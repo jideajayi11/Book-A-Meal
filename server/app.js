@@ -1,13 +1,11 @@
-// import express from "express";
-const express = require('express');
+import express from 'express';
+import routes from '../server/routes/mealRoute';
 
-const app=express();
-const port = 3000;
+const app = express();
+routes(app);
 
-app.get('/',function(req, res){
-res.send("Hello you");
-});
+app.get('/', (req, res) => res.status(200).send({
+  message: 'Book a Meal'
+}));
 
-app.listen(port,function(){
-    console.log("port started");
-});
+export default app;
