@@ -7,4 +7,5 @@ class Meals {
         });
     }
 }
+
 export default Meals;
