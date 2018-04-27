@@ -70,6 +70,21 @@ class Meals {
             }
         } 
     }
+
+    
+    static createMenu(req, res) {
+        const lastId = menu[menu.length - 1].id;
+        menu.push({
+            id: parseInt(lastId + 1, 10),
+            mealId: req.body.mealId,
+            catererId: req.body.catererId,
+            menuDate: Date.now(),
+        });
+        return res.json({
+            menu,
+            message: 'new meal added to menu'
+        });
+    }
 }
 
 export default Meals;
