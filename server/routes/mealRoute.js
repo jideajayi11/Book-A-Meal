@@ -1,10 +1,11 @@
 import Meals from '../controller/mealController';
-import mealModel from '../model/mealModel'; 
-
+import meals from '../model/mealModel'; 
+import menu from '../model/menuModel';
+import orders from '../model/orderModel';
 
 export default (app) => {
-  app.get('/api/v1/mealModel', Meals.getMeals);
-  app.post('/api/v1/mealModel', Meals.createMeals);
+  app.get('/api/v1/meals', Meals.getMeals);
+  //app.post('/api/v1/mealModel', Meals.createMeals);
   //app.put('/api/v1/mealModel/:mealModelId', Meals.updateMeals);
   //app.delete('/api/v1/mealModel/:mealModelId', Meals.removeMeals);
   //app.get('/api/v1/mealModel/:mealModelId', Meals.retrieveMeals);

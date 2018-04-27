@@ -5,7 +5,7 @@ const app = express();
 routes(app);
 
 app.get('/', (req, res) => res.status(200).send({
-  message: 'Book a Meal'
+  message: 'Book-a-Meal'
 }));
 
 export default app;
