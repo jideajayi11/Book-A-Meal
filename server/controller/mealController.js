@@ -42,6 +42,21 @@ class Meals {
             message: 'new meal added'
         });
     }
+
+
+    static updateMeals(req, res) {
+        for (let i = 0; i < meals.length; i += 1) {
+            if (meals[i].mealId === req.params.mealId) {
+                meals[i].mealName = req.body.mealName;
+                meals[i].mealAmount = req.body.mealAmount;
+                meals[i].imgUrl = req.body.imgUrl;
+            }
+        } 
+        return res.json({
+            meals,
+            message: 'meal updated'
+        });
+    }
 }
 
 export default Meals;
