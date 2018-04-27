@@ -12,4 +12,5 @@ export default (app) => {
   app.get('/api/v1/menu', Meals.getMenu);
   app.post('/api/v1/orders', Meals.createOrder);
   app.put('/api/v1/orders/:orderId', Meals.updateOrder);
+  app.get('/api/v1/orders', Meals.getOrder);
 };
