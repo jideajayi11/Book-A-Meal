@@ -57,6 +57,19 @@ class Meals {
             message: 'meal updated'
         });
     }
+
+
+    static deleteMeals(req, res) {
+        for (let i = 0; i < meals.length; i += 1) {
+            if (meals[i].mealId === req.params.mealId) {
+                meals.splice(i, 1);
+                return res.json({
+                    meals,
+                    message: 'meal deleted'
+                });
+            }
+        } 
+    }
 }
 
 export default Meals;
