@@ -145,6 +145,33 @@ class Meals {
     }
 
 
+    static getOrder(req, res) {
+        let customerOrders = [];
+        for (let i = 0; i < orders.length; i += 1) {
+            if (orders[i].catererId === req.body.catererId && orders[i].orderDate === req.body.orderDate) {
+                for (let j = 0; j < meals.length; j += 1) {
+                    if (meals[j].mealId === orders[i].mealId) {
+                        customerOrders.push({
+                            id: meals[j].id,
+                            mealId: meals[j].mealId,
+                            catererId: meals[j].catererId,
+                            mealName: meals[j].mealName,
+                            mealAmount: meals[j].mealAmount,
+                            customerId: orders[i].customerId,
+                            orderId: orders[i].orderId,
+                            orderDate: orders[i].orderDate,
+                            orderStatus: orders[i].orderStatus,
+                        });
+                    }
+                }
+            }
+        }
+        return res.json({
+            customerOrders
+        });
+    }
+
+
 
 }
 
