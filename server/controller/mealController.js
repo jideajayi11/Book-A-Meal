@@ -110,6 +110,23 @@ class Meals {
             catererMenu
         });
     }
+
+
+    static createOrder(req, res) {
+        const lastId = orders[orders.length - 1].id;
+        orders.push({
+            id: parseInt(lastId + 1, 10),
+            mealId: req.body.mealId,
+            customerId: req.body.customerId,
+            catererId: req.body.catererId,
+            orderDate: Date.now(),
+            orderStatus: 'pending',
+        });
+        return res.json({
+            orders,
+            message: 'new order made'
+        });
+    }
 }
 
 export default Meals;

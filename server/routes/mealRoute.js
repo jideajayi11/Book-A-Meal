@@ -10,4 +10,5 @@ export default (app) => {
   app.delete('/api/v1/meals/:mealId', Meals.deleteMeals);
   app.post('/api/v1/menu', Meals.createMenu);
   app.get('/api/v1/menu', Meals.getMenu);
+  app.post('/api/v1/orders', Meals.createOrder);
 };
