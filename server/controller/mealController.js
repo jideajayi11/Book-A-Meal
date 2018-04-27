@@ -114,11 +114,13 @@ class Meals {
 
     static createOrder(req, res) {
         const lastId = orders[orders.length - 1].id;
+        const orderId = 'ord-' + parseInt(lastId + 1, 10);
         orders.push({
             id: parseInt(lastId + 1, 10),
             mealId: req.body.mealId,
             customerId: req.body.customerId,
             catererId: req.body.catererId,
+            orderId: orderId,
             orderDate: Date.now(),
             orderStatus: 'pending',
         });
@@ -127,6 +129,23 @@ class Meals {
             message: 'new order made'
         });
     }
+
+
+    static updateOrder(req, res) {
+        for (let i = 0; i < orders.length; i += 1) {
+            if (orders[i].orderId === req.params.orderId) {
+                orders[i].orderStatus = req.body.orderStatus;
+
+                return res.json({
+                    orders,
+                    message: 'order updated'
+                });
+            }
+        } 
+    }
+
+
+
 }
 
 export default Meals;
