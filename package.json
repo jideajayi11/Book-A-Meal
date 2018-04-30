@@ -31,15 +31,10 @@
     "prettier": "^1.12.1"
   },
   "scripts": {
-<<<<<<< HEAD
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node ./server/bin/www",
-    "lint": "eslint"
-=======
     "test": "mocha",
-    "start": "nodemon ./server/app.js",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
->>>>>>> ch-setup-server-side-157040328
+    "start": "nodemon --exec babel-node ./server/bin/www",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
