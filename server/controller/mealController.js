@@ -2,9 +2,13 @@ import meals from '../model/mealModel';
 import menu from '../model/menuModel';
 import orders from '../model/orderModel';
 
+//let meals = require('../model/mealModel');
+//let menu = require('../model/menuModel');
+//let orders = require('../model/orderModel');
+
 class Meals {
     static getMeals(req, res) {
-        const catererId = req.body.catererId;
+        const catererId = req.params.catererId;
         let catererMeals = [];
         for (let i = 0; i < meals.length; i += 1) {
             if (meals[i].catererId === catererId) {
@@ -90,7 +94,7 @@ class Meals {
     static getMenu(req, res) {
         let catererMenu = [];
         for (let i = 0; i < menu.length; i += 1) {
-            if (menu[i].catererId === req.body.catererId) {
+            if (menu[i].catererId === req.params.catererId) {
                 for (let j = 0; j < meals.length; j += 1) {
                     if (meals[j].mealId === menu[i].mealId) {
                         catererMenu.push({
@@ -174,5 +178,6 @@ class Meals {
 
 
 }
+
 
 export default Meals;

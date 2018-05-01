@@ -3,8 +3,13 @@ import meals from '../model/mealModel';
 import menu from '../model/menuModel';
 import orders from '../model/orderModel';
 
+//let Meals = require('../controller/mealController');
+//let meals = require('../model/mealModel');
+//let menu = require('../model/menuModel');
+//let orders = require('../model/orderModel');
+
 export default (app) => {
-  app.get('/api/v1/meals', Meals.getMeals);
+  app.get('/api/v1/meals/:catererId', Meals.getMeals);
   app.post('/api/v1/meals', Meals.createMeal);
   app.put('/api/v1/meals/:mealId', Meals.updateMeals);
   app.delete('/api/v1/meals/:mealId', Meals.deleteMeals);
