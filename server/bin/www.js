@@ -12,3 +12,5 @@ const server = http.createServer(app);
 server.listen(port);
 
 console.log('connected to port');
+
+export default server;

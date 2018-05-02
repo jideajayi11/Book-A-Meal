@@ -17,7 +17,7 @@ class Meals {
                 });
             }
         } 
-        return res.json({
+        return res.status(200).json({
             catererMeals
         });
     }
