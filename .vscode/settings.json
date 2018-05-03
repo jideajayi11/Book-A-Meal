@@ -1,2 +1,4 @@
 {
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.tabSize": 2
 }

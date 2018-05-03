@@ -1,72 +1,136 @@
 import meals from '../model/mealModel';
 
 class Meals {
-    static getMeals(req, res) {
-        const catererId = req.params.catererId;
-        let catererMeals = [];
-        for (let i = 0; i < meals.length; i += 1) {
-            if (meals[i].catererId === catererId) {
-                catererMeals.push({
-                    id: meals[i].id,
-                    mealId: meals[i].mealId,
-                    catererId: meals[i].catererId,
-                    mealName: meals[i].mealName,
-                    mealAmount: meals[i].mealAmount,
-                    imgUrl: meals[i].imgUrl,
-                    dateAdded: meals[i].dateAdded,
-                });
-            }
-        } 
-        return res.status(200).json({
-            catererMeals
-        });
+
+  static getMeals(req, res) {
+    const catererId = req.params.catererId;
+
+    //filter function
+    function filterCaterer(meal) {
+      return meal.catererId == catererId;
     }
 
+    const catererMeals = meals.filter(filterCaterer);
+    if(catererMeals.length > 0) {
+      return res.status(200).json({
+        catererMeals
+      });
+    }
+    else {
+      return res.status(400).json({
+        error: 400,
+        message: 'meal not found'
+      });
+    }
+    
+  }
 
-    static createMeal(req, res) {
-        const lastId = meals[meals.length - 1].id;
-        const mealId = 'meal-' + parseInt(lastId + 1, 10);
-        meals.push({
-            id: parseInt(lastId + 1, 10),
-            mealId: mealId,
-            catererId: req.body.catererId,
-            mealName: req.body.mealName,
-            mealAmount: req.body.mealAmount,
-            imgUrl: req.body.imgUrl,
-            dateAdded: Date.now(),
-        });
-        return res.json({
-            meals,
-            message: 'new meal added'
-        });
+  static getMeal(req, res) {
+    const mealId = req.params.mealId;
+
+    //filter function
+    function filterMeal(meal) {
+      return meal.mealId == mealId;
     }
 
-
-    static updateMeals(req, res) {
-        for (let i = 0; i < meals.length; i += 1) {
-            if (meals[i].mealId === req.params.mealId) {
-                meals[i].mealName = req.body.mealName;
-                meals[i].mealAmount = req.body.mealAmount;
-                meals[i].imgUrl = req.body.imgUrl;
-            }
-        } 
-        return res.json({
-            meals,
-            message: 'meal updated'
-        });
+    const meal = meals.filter(filterMeal);
+    if(meal.length > 0) {
+      return res.status(200).json({
+        meal
+      });
     }
+    else {
+      return res.status(400).json({
+        error: 400,
+        message: 'meal not found'
+      });
+    }
+    
+  }
+
+
+  static createMeal(req, res) {
+    if(req.body.catererId == '' || req.body.mealName == '' || req.body.mealAmount == '') {
+      return res.status(400).json({
+        error: 400,
+        message: 'Incomplete parameters'
+      });
+    }
+
+    const lastId = meals[meals.length - 1].id;
+    const mealId = 'meal-' + parseInt(lastId + 1, 10);
+    meals.push({
+      id: parseInt(lastId + 1, 10),
+      mealId: mealId,
+      catererId: req.body.catererId,
+      mealName: req.body.mealName,
+      mealAmount: req.body.mealAmount,
+      imgUrl: req.body.imgUrl,
+      dateAdded: Date.now()
+    });
+    return res.status(200).json({
+      //meals,
+      message: 'new meal added'
+    });
+  }
+
+
+  static updateMeals(req, res) {
+    const mealId = req.params.mealId;
+
+    //filter function
+    function filterMeal(meal) {
+      return meal.mealId == mealId;
+    }
+    const index = meals.findIndex(filterMeal);
+    if(index >= 0) {
+      meals.splice(index, 1, {
+        id: meals[index].id,
+        mealId: meals[index].mealId,
+        catererId: meals[index].catererId,
+        mealName: req.body.mealName,
+        mealAmount: req.body.mealAmount,
+        imgUrl: req.body.imgUrl,
+        dateAdded: meals[index].dateAdded
+      });
+    
+      return res.status(200).json({
+        //meals,
+        message: 'meal updated'
+      });
+    }
+    else {
+      return res.status(400).json({
+        error: 400,
+        message: 'meal not found'
+      });
+    }
+  }
 
 
     static deleteMeals(req, res) {
-        for (let i = 0; i < meals.length; i += 1) {
-            if (meals[i].mealId === req.params.mealId) {
-                meals.splice(i, 1);
-                return res.json({
-                    meals,
-                    message: 'meal deleted'
-                });
-            }
-        } 
+      const mealId = req.params.mealId;
+
+      //filter function
+      function filterMeal(meal) {
+        return meal.mealId == mealId;
+      }
+      const index = meals.findIndex(filterMeal);
+
+      if(index >= 0) {
+        meals.splice(index, 1);
+      
+        return res.status(200).json({
+          //meals,
+          message: 'meal deleted'
+        });
+      }
+      else{
+        return res.status(400).json({
+          error: 400,
+          message: 'meal not found'
+        });
+      } 
     }
 
 }
