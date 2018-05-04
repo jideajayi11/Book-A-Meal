@@ -41,6 +41,18 @@ export default (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     // associations can be defined here
+    User.hasMany(models.Meal, {
+      foreignKey: 'userId',
+      onDelete: 'SET NULL'
+    });
+    User.hasMany(models.Menu, {
+      foreignKey: 'userId',
+      onDelete: 'SET NULL'
+    });
+    User.hasMany(models.Order, {
+      foreignKey: 'userId',
+      onDelete: 'SET NULL'
+    });
   };
   return User;
 };

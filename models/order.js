@@ -33,6 +33,14 @@ export default (sequelize, DataTypes) => {
   }, {});
   Order.associate = function (models) {
     // associations can be defined here
+    Order.belongsTo(models.User, {
+      foreignKey: 'customerId',
+      onDelete: 'SET NULL'
+    });
+    Order.belongsTo(models.Meal, {
+      foreignKey: 'mealId',
+      onDelete: 'SET NULL'
+    });
   };
   return Order;
 }

@@ -21,6 +21,14 @@ export default (sequelize, DataTypes) => {
   }, {});
   Menu.associate = function (models) {
     // associations can be defined here
+    Menu.hasMany(models.Meal, {
+      foreignKey: 'mealId',
+      onDelete: 'SET NULL'
+    });
+    Menu.belongsTo(models.User, {
+      foreignKey: 'catererId',
+      onDelete: 'SET NULL'
+    });
   };
   return Menu;
 }
