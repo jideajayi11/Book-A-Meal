@@ -9,12 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       mealId: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.UUID,
+        onDelete: 'SET NULL',
+        references: {
+          model: 'Menus',
+          key: 'mealId'
+        }
       },
       catererId: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.UUID,
+        onDelete: 'SET NULL',
+        references: {
+          model: 'Users',
+          key: 'userId'
+        }
       },
       mealName: {
         type: Sequelize.STRING,

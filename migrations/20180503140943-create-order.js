@@ -9,16 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       mealId: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.UUID,
+        onDelete: 'SET NULL',
+        references: {
+          model: 'Meals',
+          key: 'mealId'
+        }
       },
       catererId: {
         type: Sequelize.STRING,
         allowNull: false
       },
       customerId: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.UUID,
+        onDelete: 'SET NULL',
+        references: {
+          model: 'Users',
+          key: 'userId'
+        }
       },
       orderId: {
         type: Sequelize.STRING,

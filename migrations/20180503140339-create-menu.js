@@ -13,8 +13,12 @@ module.exports = {
         allowNull: false
       },
       catererId: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.UUID,
+        onDelete: 'SET NULL',
+        references: {
+          model: 'Users',
+          key: 'userId'
+        }
       },
       menuDate: {
         type: Sequelize.DATE
