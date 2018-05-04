@@ -69,7 +69,7 @@ class Meals {
       dateAdded: Date.now()
     });
     return res.status(200).json({
-      //meals,
+      meals,
       message: 'new meal added'
     });
   }
@@ -95,7 +95,7 @@ class Meals {
       });
     
       return res.status(200).json({
-        //meals,
+        meals,
         message: 'meal updated'
       });
     }
@@ -121,7 +121,7 @@ class Meals {
         meals.splice(index, 1);
       
         return res.status(200).json({
-          //meals,
+          meals,
           message: 'meal deleted'
         });
       }

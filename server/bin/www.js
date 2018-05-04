@@ -1,4 +1,6 @@
 import * as http from 'http';
+import env from 'dotenv';
+env.config();
 import app from '../app';
 
 

@@ -1,4 +1,5 @@
 import menu from '../model/menuModel';
+import meals from '../model/mealModel';
 
 class Menu {
    

@@ -1,17 +1,18 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
-import routes from '../server/routes/mealRoute';
-
-
-//let express = require('express');
-//let routes = require('../server/routes/mealRoute');
+import routesMeal from '../server/routes/mealRoute';
+import routesMenu from '../server/routes/menuRoute';
+import routesOrder from '../server/routes/menuRoute';
 
 const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-routes(app);
+
+routesMeal(app);
+routesMenu(app);
+routesOrder(app);
 
 app.get('/', (req, res) => res.status(200).send({
   message: 'Book-A-Meal'

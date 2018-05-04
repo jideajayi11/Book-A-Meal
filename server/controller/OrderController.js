@@ -1,9 +1,10 @@
 import orders from '../model/orderModel';
+import meals from '../model/mealModel';
 
 class Orders {
    
     static createOrder(req, res) {
-        const lastId = orders[orders.length - 1].id;
+        /* const lastId = orders[orders.length - 1].id;
         const orderId = 'ord-' + parseInt(lastId + 1, 10);
         orders.push({
             id: parseInt(lastId + 1, 10),
@@ -13,9 +14,9 @@ class Orders {
             orderId: orderId,
             orderDate: Date.now(),
             orderStatus: 'pending',
-        });
+        }); */
         return res.json({
-            orders,
+           // orders,
             message: 'new order made'
         });
     }
@@ -35,10 +36,12 @@ class Orders {
     }
 
 
-    static getOrder(req, res) {
+    /* static getOrder(req, res) {
         let customerOrders = [];
         for (let i = 0; i < orders.length; i += 1) {
-            if (orders[i].catererId === req.body.catererId && orders[i].orderDate === req.body.orderDate) {
+           // if (orders[i].catererId === req.body.catererId && orders[i].orderDate === req.body.orderDate) {
+            if (orders[i].catererId === req.params.catererId) {
+            
                 for (let j = 0; j < meals.length; j += 1) {
                     if (meals[j].mealId === orders[i].mealId) {
                         customerOrders.push({
@@ -59,11 +62,14 @@ class Orders {
         return res.json({
             customerOrders
         });
+    } */
+    static getOrder(req, res) {
+        return res.json({
+            message: 'order updated'
+        });
     }
 
 
 
 }
-
-
 export default Orders;
