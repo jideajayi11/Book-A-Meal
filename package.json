@@ -51,7 +51,8 @@
     "test": "mocha --compilers js:babel-core/register ./server/test/**/*.test.js",
     "start": "nodemon --exec babel-node ./server/bin/www",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
-    "lint": "eslint"
+    "lint": "eslint",
+    "gh-pages": "gh-pages -d UI"
   },
   "repository": {
     "type": "git",

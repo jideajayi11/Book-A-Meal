@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import logger from 'morgan';
 import routesMeal from '../server/routes/mealRoute';
 import routesMenu from '../server/routes/menuRoute';
-import routesOrder from '../server/routes/menuRoute';
+import routesOrder from '../server/routes/orderRoute';
 
 const app = express();
 app.use(logger('dev'));

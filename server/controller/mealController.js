@@ -5,12 +5,9 @@ class Meals {
   static getMeals(req, res) {
     const catererId = req.params.catererId;
 
-    //filter function
-    function filterCaterer(meal) {
+    const catererMeals = meals.filter((meal) => {
       return meal.catererId == catererId;
-    }
-
-    const catererMeals = meals.filter(filterCaterer);
+    });
     if(catererMeals.length > 0) {
       return res.status(200).json({
         catererMeals
@@ -28,12 +25,9 @@ class Meals {
   static getMeal(req, res) {
     const mealId = req.params.mealId;
 
-    //filter function
-    function filterMeal(meal) {
+    const meal = meals.filter((meal) => {
       return meal.mealId == mealId;
-    }
-
-    const meal = meals.filter(filterMeal);
+    });
     if(meal.length > 0) {
       return res.status(200).json({
         meal
@@ -78,11 +72,9 @@ class Meals {
   static updateMeals(req, res) {
     const mealId = req.params.mealId;
 
-    //filter function
-    function filterMeal(meal) {
+    const index = meals.findIndex((meal) => {
       return meal.mealId == mealId;
-    }
-    const index = meals.findIndex(filterMeal);
+    });
     if(index >= 0) {
       meals.splice(index, 1, {
         id: meals[index].id,
@@ -111,11 +103,9 @@ class Meals {
     static deleteMeals(req, res) {
       const mealId = req.params.mealId;
 
-      //filter function
-      function filterMeal(meal) {
+      const index = meals.findIndex((meal) => {
         return meal.mealId == mealId;
-      }
-      const index = meals.findIndex(filterMeal);
+      });
 
       if(index >= 0) {
         meals.splice(index, 1);
