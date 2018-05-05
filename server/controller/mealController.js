@@ -9,7 +9,7 @@ class Meals {
       return meal.catererId == catererId;
     });
     if(catererMeals.length > 0) {
-      return res.status(200).json({
+      return res.status(201).json({
         catererMeals
       });
     }
@@ -62,7 +62,7 @@ class Meals {
       imgUrl: req.body.imgUrl,
       dateAdded: Date.now()
     });
-    return res.status(200).json({
+    return res.status(201).json({
       meals,
       message: 'new meal added'
     });

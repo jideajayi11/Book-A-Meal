@@ -15,7 +15,7 @@ class Orders {
             orderDate: Date.now(),
             orderStatus: 'pending',
         });
-        return res.json({
+        return res.status(201).json({
             orders,
             message: 'new order made'
         });

@@ -11,7 +11,7 @@ class Menu {
             catererId: req.body.catererId,
             menuDate: Date.now(),
         });
-        return res.json({
+        return res.status(201).json({
             menu,
             message: 'new meal added to menu'
         });

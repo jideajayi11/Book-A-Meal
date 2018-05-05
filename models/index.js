@@ -11,7 +11,8 @@ var db        = {};
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  //var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  var sequelize = new Sequelize('postgres://hqsnpvzb:rE3oYKLf308BFZxGqJ6CK18ooU6vBeHG@elmer.db.elephantsql.com:5432/hqsnpvzb');
 }
 
 fs
